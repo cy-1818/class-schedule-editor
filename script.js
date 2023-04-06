@@ -8,7 +8,7 @@ function buttonAdd(value){
     let button = document.createElement('input')
     button.type = 'button'
     button.value = value
-    button.name = value
+    button.tagName = value
     button.addEventListener('click',function (event) {
         let obj = event.target
         let edit = document.getElementById(String(day)+String(number))
@@ -42,12 +42,14 @@ function setUp() {
     addButton.type = 'button'
     addButton.value = "+"
     addButton.onclick = () => {
-        var str = prompt("教科名");
-        var obj = choice.getElementsByName(str)[0];
-        if(obj === undefined){
-            buttonAdd(str)
-        }else{
-            onj.remove()
+        var str = prompt("教科名").split(',');
+        for(var i of str){
+            var obj = choice.getElementsByTagName(i)[0]
+            if(obj === undefined){
+                buttonAdd(i)
+            }else{
+                obj.remove()
+            }
         }
     }
     choice.appendChild(addButton)
@@ -76,7 +78,7 @@ function collectData() {
 }
 
 document.documentElement.addEventListener('touchstart', function (e) {
-  if (e.touches.length >= 2) {e.preventDefault();}
+  if (e.touches.length >= 2) e.preventDefault();
   }, {passive: false});
   var t = 0;
   document.documentElement.addEventListener('touchend', function (e) {
@@ -85,6 +87,6 @@ document.documentElement.addEventListener('touchstart', function (e) {
     e.preventDefault();
   }
   t = now;
-  }, false);
+}, false);
 
 setUp()
