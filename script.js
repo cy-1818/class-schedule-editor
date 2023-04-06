@@ -41,8 +41,7 @@ function setUp() {
     addButton.id = "addButton"
     addButton.type = 'button'
     addButton.value = "+"
-    addButton.addEventListener('click', 
-    e => {
+    addButton.onclick = () => {
         var str = prompt("教科名");
         var obj = choice.getElementsByName(str)[0];
         if(obj === undefined){
@@ -50,7 +49,7 @@ function setUp() {
         }else{
             onj.remove()
         }
-    })
+    }
     choice.appendChild(addButton)
     let subjs = ["英語","国語","数学"]
     for (let i of subjs) {
