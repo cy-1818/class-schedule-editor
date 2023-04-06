@@ -4,6 +4,22 @@ const choice = document.getElementById('choice')
 var day = 0
 var number = 0
 
+function buttonAdd(value){
+    let button = document.createElement('input')
+    button.type = 'button'
+    button.value = i
+    button.name = i
+    button.addEventListener('click',function (event) {
+        let obj = event.target
+        let edit = document.getElementById(String(day)+String(number))
+        edit.innerText = obj.value
+        if (number == 6) {
+            day += 1
+        }
+        number = (number+1) % 7
+    })
+    addButton.before(button)
+}
 function setUp() {
     for (let i=0;i<7;i++) {
 
@@ -20,23 +36,22 @@ function setUp() {
 
         table.appendChild(tr)
     }
-
-    let subjs = ['現文', '古典', '数①', '数②', '数Ⅲ', '情報', 'コ英', '英表', '化学', '生物', '物理', '世A', '世B','日B', '現社', '地理', '体育', 'LHR', '探究', '英語', '国語', '数学', '　　']
+    var addButton = document.createElement('input')
+    addButton.type = 'button'
+    addButton.value = "+"
+    addButton.addEventListener('click', 
+    e => {
+        var str = prompt("教科名");
+        var obj = choice.getElementsByName(str)[0];
+        if(obj === undefined){
+            buttonAdd(str)
+        }else{
+            onj.remove()
+        }
+    })
+    let subjs = ["英語","国語","数学"]
     for (let i of subjs) {
-        let button = document.createElement('input')
-        button.type = 'button'
-        button.value = i
-        button.addEventListener('click', 
-        function (event) {
-            let obj = event.target
-            let edit = document.getElementById(String(day)+String(number))
-            edit.innerText = obj.value
-            if (number == 6) {
-                day += 1
-            }
-            number = (number+1) % 7
-        })
-        choice.appendChild(button)
+        buttonAdd(i)
     }
 }
 
