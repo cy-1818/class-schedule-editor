@@ -51,6 +51,7 @@ function setUp() {
             onj.remove()
         }
     })
+    choice.appendChild(addButton)
     let subjs = ["英語","国語","数学"]
     for (let i of subjs) {
         buttonAdd(i)
