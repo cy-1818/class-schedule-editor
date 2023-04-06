@@ -9,7 +9,6 @@ function buttonAdd(value){
     button.type = 'button'
     button.value = i
     button.name = i
-    button.isContentEditable = true
     button.addEventListener('click',function (event) {
         let obj = event.target
         let edit = document.getElementById(String(day)+String(number))
@@ -31,6 +30,7 @@ function setUp() {
             let txt = document.createElement('p')
             txt.id = String(j) + String(i)
             txt.innerText = '____'
+            txt.contentEditable = true
             td.appendChild(txt)
             tr.appendChild(td)
         }
