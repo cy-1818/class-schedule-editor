@@ -18,7 +18,7 @@ function buttonAdd(value){
         }
         number = (number+1) % 7
     })
-    addButton.before(button)
+    document.getElementById("addButton").before(button)
 }
 function setUp() {
     for (let i=0;i<7;i++) {
@@ -37,6 +37,7 @@ function setUp() {
         table.appendChild(tr)
     }
     var addButton = document.createElement('input')
+    addButton.id = "addButton"
     addButton.type = 'button'
     addButton.value = "+"
     addButton.addEventListener('click', 
