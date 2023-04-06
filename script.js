@@ -7,8 +7,8 @@ var number = 0
 function buttonAdd(value){
     let button = document.createElement('input')
     button.type = 'button'
-    button.value = i
-    button.name = i
+    button.value = value
+    button.name = value
     button.addEventListener('click',function (event) {
         let obj = event.target
         let edit = document.getElementById(String(day)+String(number))
