@@ -46,13 +46,12 @@ ul {
 
 .buttons {
     position:fixed;
-    display:flex;
+    display:inline-block;
     width:100%;
     bottom:0;
     background-color: #8a8479;
 }
 .subjects {
-    position: fixed;
     display: flex;
     width: calc(100% - 120px);
     align-content: left;
