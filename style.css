@@ -46,11 +46,11 @@ ul {
 
 .buttons {
     position:fixed;
+    bottom:0;
     display:inline-block;
     width:100%;
     height:auto;
-    bottom:0;
-    background-color: #8a8479;
+    background: #8a8479;
 }
 .subjects {
     display: inline-block;
