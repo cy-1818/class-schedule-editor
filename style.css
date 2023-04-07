@@ -46,19 +46,18 @@ ul {
 
 .buttons {
     position:fixed;
+    bottom:0;
     background-color: #8a8479;
 }
 .subjects {
     position: fixed;
     display: flex;
-    bottom: 0;
     width: calc(100% - 120px);
     align-content: left;
 }
 
 .rightButtons {
     display:flex;
-    bottom:0;
     width:120px;
     align-content: center;
 }
