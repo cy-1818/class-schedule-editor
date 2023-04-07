@@ -52,14 +52,14 @@ ul {
     background-color: #8a8479;
 }
 .subjects {
-    display: flex;
+    display: inline-block;
     width: calc(100% - 120px);
     align-content: left;
 }
 
 .rightButtons {
-    display:flex;
-    width:120px;
+    display: inline-block;
+    width:110px;
     align-content: center;
 }
 
