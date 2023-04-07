@@ -42,7 +42,7 @@ function setUp() {
     addButton.type = 'button'
     addButton.value = "+"
     addButton.onclick = () => {
-        var str = prompt("教科名").split(',');
+        var str = prompt("教科名(｢、｣区切りで複数入力)").split('、');
         for(var i of str){
             var obj = choice.getElementsByTagName(i)[0]
             if(obj === undefined){
@@ -88,5 +88,21 @@ document.documentElement.addEventListener('touchstart', function (e) {
   }
   t = now;
 }, false);
+
+function del(){
+    if(number===0){
+        day-=1
+    }
+    number=(number+6)%7
+    document.getElementById(String(day)+String(number)).innerText='____'
+}
+
+function space(){
+    document.getElementById(String(day)+String(number)).innerText='　'
+    if(number==6){
+        day+=1
+    }
+    number=(number+1)%7
+}
 
 setUp()
