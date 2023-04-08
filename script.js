@@ -9,6 +9,7 @@ function buttonAdd(value){
     button.type = 'button'
     button.value = value
     button.tagName = value
+    button.classList = ["button"]
     button.addEventListener('click',function (event) {
         let obj = event.target
         let edit = document.getElementById(String(day)+String(number))
@@ -41,6 +42,7 @@ function setUp() {
     addButton.id = "addButton"
     addButton.type = 'button'
     addButton.value = "+"
+    addButton.classList = ["button"]
     addButton.onclick = () => {
         var str = prompt("教科名(｢、｣区切りで複数入力)").split('、');
         for(var i of str){
