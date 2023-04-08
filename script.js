@@ -20,7 +20,7 @@ function buttonAdd(value){
         let obj = event.target
         let edit = document.getElementById(`${day},${number}`)
         edit.innerText = obj.value
-        classes[day][number] = '____'
+        classes[day][number] = obj.value
         if (number == maxNum-1) {
             day += 1
         }
