@@ -49,9 +49,9 @@ ul {
     bottom:0;
     display:inline-block;
     width:100%;
-    height:auto;
     background: #8a8479;
 }
+
 .subjects {
     display: inline-block;
     width: calc(100% - 120px);
