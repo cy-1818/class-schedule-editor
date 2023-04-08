@@ -6,6 +6,9 @@ var maxNum = 7
 var day = 0
 var number = 0
 var classes = []
+var week = ["noname"]
+var showSunday = true
+var SundayLeft = true
 
 function buttonAdd(value){
     let button = document.createElement('input')
@@ -18,19 +21,49 @@ function buttonAdd(value){
         let edit = document.getElementById(`${day},${number}`)
         edit.innerText = obj.value
         classes[day][number] = '____'
-        if (number == 6) {
+        if (number == maxNum-1) {
             day += 1
         }
-        number = (number+1) % 7
+        number = (number+1) % maxNum
     })
     document.getElementById("addButton").before(button)
 }
-function makeTimeTable(days, num) {
-    for (let i=0;i<days;i++) {
+
+function addDay(char){
+    var dayNode = document.createElement('td')
+    dayNode.innerText=char
+    return dayNode
+}
+
+function makeTimeTable() {
+    table.innerHTML=""
+    var head = document.createElement('tr')
+    var days = document.createElement('tr')
+    for (var n=0;n<week.length;n++){
+        var weekTitle = document.createElement('th')
+        weekTitle.colSpan="6"+Number(showSunday)
+        weekTitle.innerText=week[n]
+        head.append(weekTitle)
+        if(showSunday&&SundayLeft){
+            days.append(addDay('日'))
+        }
+        days.append(addDay('月'))
+        days.append(addDay('火'))
+        days.append(addDay('水'))
+        days.append(addDay('木'))
+        days.append(addDay('金'))
+        days.append(addDay('土'))
+        if(showSunday&&!SundayLeft){
+            days.append(addDay('日'))
+
+        }
+    }
+    for (let i=0;i<maxDay;i++) {
         let tr = document.createElement('tr')
-        for (let j=0;j<num;j++) {
+        for (let j=0;j<maxNum;j++) {
             let td = document.createElement('td')
             let txt = document.createElement('p')
+            txt.style.width="3em"
             txt.id = `${i},${j}`
             if(classes[i]===undefined||classes[i][j]===undefined){
                 if(classes[i]===undefined){
@@ -51,7 +84,7 @@ function makeTimeTable(days, num) {
 }
 
 function setUp(){
-    makeTimeTable(maxDay,maxNum)
+    makeTimeTable()
     var addButton = document.createElement('input')
     addButton.id = "addButton"
     addButton.type = 'button'
@@ -110,7 +143,7 @@ function del(){
     if(number===0){
         day-=1
     }
-    number=(number+6)%7
+    number=(number+maxNum-1)%maxNum
     document.getElementById(`${day},${number}`).innerText='____'
     classes[day][number]='____'
 }
@@ -118,10 +151,82 @@ function del(){
 function space(){
     document.getElementById(`${day},${number}`).innerText='____'
     classes[day][number]='____'
-    if(number==6){
+    if(number==maxNum-1){
         day+=1
     }
-    number=(number+1)%7
+    number=(number+1)%maxNum
+}
+
+function editWeek(){
+    var week = prompt("週を編集(,区切り)",week.join(',')).split(',')
+    if(showSunday){
+        maxDay=week.length*7
+    }else{
+        maxDay=week.length*6
+    }
+    makeTimeTable()
+}
+
+function editNum(){
+    var newNum = Math.floor(Number(prompt("1日の授業数")))
+    if(isNaN(newNum)){
+        newNum=maxNum
+    }
+    if(maxNum>newNum){
+        for(var n=0;n<maxDay;n++){
+            classes[n]=classes.slice(0,newNum).concat()
+        }
+    }
+    maxNum=newNum
+    makeTimeTable()
+}
+
+function showSun(){
+    showSunday=!showSunday
+    if(showSunday){
+        maxDay=week.length*7
+        for(var n=0;n<week.length;n++){
+            if(SundayLeft){
+                classes.splice(n*7,0,[])
+            }else{
+                classes.splice(n*7+5,0,[])
+            }
+        }
+        document.getElementById('showSun').value = "日曜を非表示"
+    }else{
+        maxDay=week.length*6
+        for(var n=0;n<week.length;n++){
+            if(SundayLeft){
+                classes.splice(n*6,1)
+            }else{
+                classes.splice(n*6+6,1)
+            }
+        }
+        document.getElementById('showSun').value = "日曜を表示"
+    }
+    makeTimeTable()
+}
+
+function transSun(){
+    SundayLeft=!SundayLeft
+    if(SundayLeft){
+        if(showSunday){
+            for(var n=0;n<week.length;n++){
+                classes.splice(n*7,0,classes[n*7+6])
+                classes.splice(n*7+7,1)
+            }
+        }
+        document.getElementById('transSun').value="日月火…土"
+    }else{
+        if(showSunday){
+            for(var n=0;n<week.length;n++){
+                classes.splice(n*7+6,0,classes[n*7])
+                classes.splice(n*7,1)
+            }
+        }
+        document.getElementById('transSun').value="月…金土日"
+    }
+    makeTimeTable()
 }
 
 setUp()

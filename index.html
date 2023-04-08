@@ -21,14 +21,15 @@
         </ul>
     </div>
     <div>
-        <input type="button" class="button" onclick="editWeek()" value="週を編集"/>
-        <input type="button" class="button" onclick="showSun()" value="日曜を表示"/>
-        <input type="button" class="button" onclick="transSun()" value="日月火…土"/>
+        <input type="button" class="weekButton" id="editWeek" onclick="editWeek()" value="週を編集"/>
+        <input type="button" class="weekButton" id="editNum" onclick="editNum()" value="1日の授業数を変更"/>
+        <input type="button" class="weekButton" id="showSun" onclick="showSun()" value="日曜を非表示"/>
+        <input type="button" class="weekButton" id="transSun" onclick="transSun()" value="日月火…土"/>
     </div>
     <div class="indicator">
         <table id="list" border="1">
             <tr>
-                <th colspan="7">無名の週</th>
+                <th colspan="7">noname</th>
             </tr>
             <tr>
                 <th>日</th>

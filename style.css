@@ -74,6 +74,11 @@ ul {
     color: black;
 }
 
+.weekButton{
+    width:120px;
+    height:30px;
+}
+
 th,td {
     padding: 5px 12px;
 }
