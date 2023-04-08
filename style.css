@@ -46,8 +46,8 @@ ul {
 
 .buttons {
     position:fixed;
-    bottom:0;
     display:inline-block;
+    bottom:0;
     width:100%;
     background: #8a8479;
 }
