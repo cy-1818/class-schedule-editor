@@ -65,7 +65,8 @@ function makeTimeTable() {
         for (let i=0;i<maxDay;i++) {
             let td = document.createElement('td')
             let txt = document.createElement('p')
-            txt.style.width="3em"
+            td.align="center"
+            td.width="3em"
             txt.id = `${i},${j}`
             if(classes[i]===undefined||classes[i][j]===undefined){
                 if(classes[i]===undefined){
