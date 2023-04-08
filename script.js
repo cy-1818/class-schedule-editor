@@ -223,7 +223,7 @@ function transSun(){
     }else{
         if(showSunday){
             for(var n=0;n<week.length;n++){
-                classes.splice(n*7+6,0,classes[n*7].concat())
+                classes.splice(n*7+7,0,classes[n*7].concat())
                 classes.splice(n*7,1)
             }
         }
