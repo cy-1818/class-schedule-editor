@@ -20,8 +20,16 @@
             <li>入力し終わったら下の方にある時間割を取得と書いてあるところを押すことで時間割のデータがコピーされます。</li>
         </ul>
     </div>
+    <div>
+        <input type="button" class="button" onclick="editWeek()" value="週を編集"/>
+        <input type="button" class="button" onclick="showSun()" value="日曜を表示"/>
+        <input type="button" class="button" onclick="transSun()" value="日月火…土"/>
+    </div>
     <div class="indicator">
         <table id="list" border="1">
+            <tr>
+                <th colspan="7">無名の週</th>
+            </tr>
             <tr>
                 <th>日</th>
                 <th>月</th>
