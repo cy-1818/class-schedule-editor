@@ -177,7 +177,7 @@ function editNum(){
     }
     if(maxNum>newNum){
         for(var n=0;n<maxDay;n++){
-            classes[n]=classes.slice(0,newNum).concat()
+            classes[n]=classes[n].slice(0,newNum).concat()
         }
     }
     maxNum=newNum
