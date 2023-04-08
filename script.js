@@ -41,7 +41,7 @@ function makeTimeTable() {
     var days = document.createElement('tr')
     for (var n=0;n<week.length;n++){
         var weekTitle = document.createElement('th')
-        weekTitle.colSpan="6"+Number(showSunday)
+        weekTitle.colSpan=6+Number(showSunday)
         weekTitle.innerText=week[n]
         head.append(weekTitle)
         if(showSunday&&SundayLeft){
@@ -58,9 +58,11 @@ function makeTimeTable() {
 
         }
     }
-    for (let i=0;i<maxDay;i++) {
+    table.append(head)
+    table.append(days)
+    for (let j=0;j<maxNum;j++) {
         let tr = document.createElement('tr')
-        for (let j=0;j<maxNum;j++) {
+        for (let i=0;i<maxDay;i++) {
             let td = document.createElement('td')
             let txt = document.createElement('p')
             txt.style.width="3em"
@@ -158,7 +160,7 @@ function space(){
 }
 
 function editWeek(){
-    var week = prompt("週を編集(,区切り)",week.join(',')).split(',')
+    week = prompt("週を編集(,区切り)",week.join(',')).split(',')
     if(showSunday){
         maxDay=week.length*7
     }else{
