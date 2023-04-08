@@ -1,11 +1,11 @@
 * {
     padding: 0px;
     margin: 0px;
-    font-family: Arial, sans-serif;
 }
 
 body {
     background-color: whitesmoke;
+    font-family: Arial, sans-serif;
 }
 
 .header {
