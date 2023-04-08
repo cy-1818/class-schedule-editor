@@ -33,6 +33,9 @@ function makeTimeTable(days, num) {
             let txt = document.createElement('p')
             txt.id = `${i},${j}`
             if(classes[i]===undefined||classes[i][j]===undefined){
+                if(classes[i]===undefined){
+                    classes[i]=[]
+                }
                 txt.innerText = '____'
                 classes[i][j] = '____'
             }else{
