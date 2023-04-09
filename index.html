@@ -47,8 +47,13 @@
     <span class="buttons">
         <div class="subjects" id="choice"></div>
         <div class="rightButtons" id="rightButtons">
-            <input type="button" class="button" onclick="del()" value="⌫"/>
-            <input type="button" class="button" onclick="space()" value="　"/>
+            <input type="del-button" class="button" onclick="del()" value="⌫"/>
+            <input type="left-button" class="button" onclick="left()" value="←"/>
+            <div style="display:inline-block">
+                <input type="up-button" class="button" onclick="up()" value="↑"/>
+                <input type="down-button" class="button" onclick="down()" value="↓"/>
+            </div>
+            <input type="right-button" class="button" onclick="right()" value="→"/>
         </div>
     </span>
     <script src="script.js"></script>

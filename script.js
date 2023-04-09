@@ -16,16 +16,15 @@ function buttonAdd(value){
     button.value = value
     button.tagName = value
     button.classList = ["button"]
-    button.addEventListener('click',function (event) {
-        let obj = event.target
+    button.onclick = function (){
         let edit = document.getElementById(`${day},${number}`)
-        edit.innerText = obj.value
-        classes[day][number] = obj.value
+        edit.innerText = this.value
+        classes[day][number] = this.value
         if (number == maxNum-1) {
             day += 1
         }
         number = (number+1) % maxNum
-    })
+    }
     document.getElementById("addButton").before(button)
 }
 
@@ -67,6 +66,9 @@ function makeTimeTable() {
             let txt = document.createElement('p')
             td.align="center"
             td.width="3em"
+            if(i==day && j==number){
+                td.bgColor = "aliceblue"
+            }
             txt.id = `${i},${j}`
             if(classes[i]===undefined||classes[i][j]===undefined){
                 if(classes[i]===undefined){
@@ -91,7 +93,7 @@ function setUp(){
     var addButton = document.createElement('input')
     addButton.id = "addButton"
     addButton.type = 'button'
-    addButton.value = "+"
+    addButton.value = "±"
     addButton.classList = ["button"]
     addButton.onclick = () => {
         var str = prompt("教科名(｢、｣区切りで複数入力)").split('、');
@@ -151,13 +153,34 @@ function del(){
     classes[day][number]='____'
 }
 
-function space(){
-    document.getElementById(`${day},${number}`).innerText='____'
-    classes[day][number]='____'
+function down(){
     if(number==maxNum-1){
         day+=1
     }
     number=(number+1)%maxNum
+    makeTimeTable()
+}
+
+function up(){
+    if(number===0){
+        day-=1
+    }
+    number=(number+maxNum-1)%maxNum
+    makeTimeTable()
+}
+
+function left(){
+    if(day!==0){
+        day-=1
+    }
+    makeTimeTable()
+}
+
+function right(){
+    if(day!=maxDay-1){
+        day+=1
+    }
+    makeTimeTable()
 }
 
 function editWeek(){

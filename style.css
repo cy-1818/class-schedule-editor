@@ -81,6 +81,41 @@ ul {
     height:30px;
 }
 
+.del-botton{
+    width: 100px;
+    height: 40px;
+    background-color: #b4b2ad;
+    color: black;
+}
+
+.right-button{
+    width: 25px;
+    height: 60px;
+    background-color: #b4b2ad;
+    color: black;
+}
+
+.up-button{
+    width: 50px;
+    height: 30px;
+    background-color: #b4b2ad;
+    color: black;
+}
+
+.down-button{
+    width: 50px;
+    height: 30px;
+    background-color: #b4b2ad;
+    color: black;
+}
+
+.left-button{
+    width: 25px;
+    height: 60px;
+    background-color: #b4b2ad;
+    color: black;
+}
+
 th,td {
     padding: 5px 12px;
 }
