@@ -52,6 +52,7 @@ ul {
     bottom:0;
     width:100%;
     background: #8a8479;
+    vertical-align: top;
 }
 
 .subjects {
@@ -64,6 +65,7 @@ ul {
     display: inline-block;
     width:110px;
     align-content: center;
+    vertical-align: top;
 }
 
 .button {

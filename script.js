@@ -24,6 +24,7 @@ function buttonAdd(value){
             day += 1
         }
         number = (number+1) % maxNum
+        makeTimeTable()
     }
     document.getElementById("addButton").before(button)
 }
@@ -35,6 +36,7 @@ function addDay(char){
 }
 
 function makeTimeTable() {
+    format()
     table.innerHTML=""
     var head = document.createElement('tr')
     var days = document.createElement('tr')
@@ -77,6 +79,9 @@ function makeTimeTable() {
                 txt.innerText = '____'
                 classes[i][j] = '____'
             }else{
+                if(classes[i][j]=='　'){
+                    classes[i][j]='____'
+                }
                 txt.innerText = classes[i][j]
             }
             txt.contentEditable = true
