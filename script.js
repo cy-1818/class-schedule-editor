@@ -67,7 +67,7 @@ function makeTimeTable() {
             td.align="center"
             td.width="3em"
             if(i==day && j==number){
-                td.bgColor = "aliceblue"
+                td.bgColor = "lightskyblue"
             }
             txt.id = `${i},${j}`
             if(classes[i]===undefined||classes[i][j]===undefined){
