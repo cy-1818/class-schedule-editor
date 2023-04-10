@@ -66,7 +66,7 @@ function makeTimeTable() {
             let td = document.createElement('td')
             let txt = document.createElement('p')
             td.align="center"
-            td.width="3em"
+            txt.width="3em"
             if(i==day && j==number){
                 td.bgColor = "lightskyblue"
             }
