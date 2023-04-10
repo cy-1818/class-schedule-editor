@@ -39,20 +39,20 @@ ul {
     display:inline-block;
 }
 .getCopy {
-    width:50%;
+    width:calc(50%-20px);
     height: 90px;
     color: greenyellow;
-    font-size: 50px;
+    font-size: 40px;
     border-width: 10px;
     border-color: lightgreen;
     background-color: goldenrod;
 }
 
 .getJSON {
-    width:50%;
+    width:calc(50%-20px);
     height: 90px;
     color: lightcyan;
-    font-size: 50px;
+    font-size: 40px;
     border-width: 10px;
     border-color: aqua;
     background-color: navy;

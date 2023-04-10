@@ -138,7 +138,7 @@ function getCopy() {
 
 function getJSON(){
     format();
-    var json = new blob([JSON.stringify(classes)],{type:'appliation/json'})
+    var json = new Blob([JSON.stringify(classes)],{type:'appliation/json'})
     var dummy = document.createElement('a')
     dummy.href = window.URL.createObjectURL(json)
     dummy.download = "Schedule.json"
