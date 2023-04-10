@@ -52,13 +52,13 @@ ul {
     bottom:0;
     width:100%;
     background: #8a8479;
-    vertical-align: top;
 }
 
 .subjects {
     display: inline-block;
     width: calc(100% - 120px);
     align-content: left;
+    vertical-align: top;
 }
 
 .rightButtons {

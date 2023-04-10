@@ -5,7 +5,7 @@ var maxDay = 7
 var maxNum = 7
 var day = 0
 var number = 0
-var classes = []
+var classes = [[]]
 var week = ["noname"]
 var showSunday = true
 var SundayLeft = true
@@ -119,8 +119,8 @@ function setUp(){
 }
 
 function format(){
-    for(var i=0;i<maxDay;i++){
-        for(var j=0;j<maxNum;j++){
+    for(var i=0;i<classes.length;i++){
+        for(var j=0;j<classes[0].length;j++){
             classes[i][j]=document.getElementById(`${i},${j}`).innerText
             if(classes[i][j]=='____'){
                 classes[i][j]='　'
