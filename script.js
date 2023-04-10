@@ -261,3 +261,14 @@ function transSun(){
 }
 
 setUp()
+
+document.body.addEventListener("touchstart", function(e){
+    if (e.touches && e.touches.length > 1) {
+      e.preventDefault();
+    }
+  }, {passive: false});
+  document.body.addEventListener("touchmove", function(e){
+    if (e.touches && e.touches.length > 1) {
+      e.preventDefault();
+    }
+  }, {passive: false});
