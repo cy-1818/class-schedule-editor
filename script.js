@@ -14,7 +14,7 @@ function buttonAdd(value){
     let button = document.createElement('input')
     button.type = 'button'
     button.value = value
-    button.tagName = value
+    button.name = value
     button.classList = ["button"]
     button.onclick = function (){
         let edit = document.getElementById(`${day},${number}`)
@@ -103,7 +103,7 @@ function setUp(){
     addButton.onclick = () => {
         var str = prompt("教科名(｢、｣区切りで複数入力)").split('、');
         for(var i of str){
-            var obj = choice.getElementsByTagName(i)[0]
+            var obj = document.getElementsByName(i)[0]
             if(obj === undefined){
                 buttonAdd(i)
             }else{
@@ -159,7 +159,7 @@ function del(){
 }
 
 function down(){
-    if(number==maxNum-1){
+    if(number==maxNum-1&&day!=maxDay-1){
         day+=1
     }
     number=(number+1)%maxNum
@@ -167,7 +167,7 @@ function down(){
 }
 
 function up(){
-    if(number===0){
+    if(number===0&&day!==0){
         day-=1
     }
     number=(number+maxNum-1)%maxNum
