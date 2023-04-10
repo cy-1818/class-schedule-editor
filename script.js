@@ -36,7 +36,6 @@ function addDay(char){
 }
 
 function makeTimeTable() {
-    format()
     table.innerHTML=""
     var head = document.createElement('tr')
     var days = document.createElement('tr')
@@ -137,17 +136,6 @@ function collectData() {
     document.getElementById('getData').value = '時間割がコピーされました'
 }
 
-document.documentElement.addEventListener('touchstart', function (e) {
-  if (e.touches.length >= 2) e.preventDefault();
-  }, {passive: false});
-  var t = 0;
-  document.documentElement.addEventListener('touchend', function (e) {
-  var now = new Date().getTime();
-  if ((now - t) < 350){
-    e.preventDefault();
-  }
-  t = now;
-}, false);
 
 function del(){
     if(number===0){
@@ -156,6 +144,8 @@ function del(){
     number=(number+maxNum-1)%maxNum
     document.getElementById(`${day},${number}`).innerText='____'
     classes[day][number]='____'
+    format()
+    makeTimeTable()
 }
 
 function down(){
@@ -163,6 +153,7 @@ function down(){
         day+=1
     }
     number=(number+1)%maxNum
+    format()
     makeTimeTable()
 }
 
@@ -171,6 +162,7 @@ function up(){
         day-=1
     }
     number=(number+maxNum-1)%maxNum
+    format()
     makeTimeTable()
 }
 
@@ -178,6 +170,7 @@ function left(){
     if(day!==0){
         day-=1
     }
+    format()
     makeTimeTable()
 }
 
@@ -185,11 +178,13 @@ function right(){
     if(day!=maxDay-1){
         day+=1
     }
+    format()
     makeTimeTable()
 }
 
 function editWeek(){
     week = prompt("週を編集(,区切り)",week.join(',')).split(',')
+    format()
     if(showSunday){
         maxDay=week.length*7
     }else{
@@ -200,6 +195,7 @@ function editWeek(){
 
 function editNum(){
     var newNum = Math.floor(Number(prompt("1日の授業数")))
+    format()
     if(isNaN(newNum)){
         newNum=maxNum
     }
@@ -213,6 +209,7 @@ function editNum(){
 }
 
 function showSun(){
+    format()
     showSunday=!showSunday
     if(showSunday){
         maxDay=week.length*7
@@ -239,6 +236,7 @@ function showSun(){
 }
 
 function transSun(){
+    format()
     SundayLeft=!SundayLeft
     if(SundayLeft){
         if(showSunday){

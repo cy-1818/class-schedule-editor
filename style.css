@@ -73,6 +73,7 @@ ul {
     height: 60px;
     margin: auto auto+5px;
     padding: 5px;
+    border-radius: 5px 5px 5px 5px;
     border: 3px solid #f9ffce;
     background-color: #b4b2ad;
     color: black;
@@ -86,6 +87,7 @@ ul {
 .del-button{
     width: 100px;
     height: 40px;
+    border-radius: 5px 5px 5px 5px;
     background-color: #b4b2ad;
     color: black;
 }
@@ -93,6 +95,7 @@ ul {
 .right-button{
     width: 25px;
     height: 60px;
+    border-radius: 5px 5px 5px 5px;
     background-color: #b4b2ad;
     color: black;
 }
@@ -100,6 +103,7 @@ ul {
 .up-button{
     width: 50px;
     height: 30px;
+    border-radius: 5px 5px 5px 5px;
     background-color: #b4b2ad;
     color: black;
 }
@@ -107,6 +111,7 @@ ul {
 .down-button{
     width: 50px;
     height: 30px;
+    border-radius: 5px 5px 5px 5px;
     background-color: #b4b2ad;
     color: black;
 }
