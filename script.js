@@ -217,7 +217,7 @@ function showSun(){
             if(SundayLeft){
                 classes.splice(n*7,0,[])
             }else{
-                classes.splice(n*7+5,0,[])
+                classes.splice(n*7+6,0,[])
             }
         }
         document.getElementById('showSun').value = "日曜を非表示"
