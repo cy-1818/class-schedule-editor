@@ -129,13 +129,23 @@ function format(){
     }
 }
 
-function collectData() {
+function getCopy() {
     format()
     console.log(classes)
     navigator.clipboard.writeText(JSON.stringify(classes))
     document.getElementById('getData').value = '時間割がコピーされました'
 }
 
+function getJSON(){
+    format();
+    var json = new blob([JSON.stringify(classes)],{type:'appliation/json'})
+    var dummy = document.createElement('a')
+    dummy.href = window.URL.createObjectURL(json)
+    dummy.download = "Schedule.json"
+    document.body.append(dummy)
+    dummy.click()
+    document.body.removeChild(dummy)
+}
 
 function del(){
     if(number===0){

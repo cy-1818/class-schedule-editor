@@ -42,7 +42,10 @@
             </tr>
         </table>
     </div>
-    <input type="button" class="getData" id='getData' onclick="collectData()" value="時間割を取得">
+    <div class="getData">
+        <input type="button" class="getCopy" id='getCopy' onclick="getCopy()" value="時間割をクリップボードにコピー">
+        <input type="button" class="getJSON" id='getJSON' onclick="getJSON()" value="JSON形式でダウンロード">
+    </div>
     <div class="spacer"></div>
     <span class="buttons">
         <div class="subjects" id="choice"></div>
