@@ -9,6 +9,10 @@ var classes = [[]]
 var week = ["noname"]
 var showSunday = true
 var SundayLeft = true
+var ask = async function(str){
+  return prompt(str)
+}
+var askflg = false
 
 function buttonAdd(value){
     let button = document.createElement('input')
@@ -92,15 +96,15 @@ function makeTimeTable() {
     }
 }
 
-function setUp(){
+async function setUp(){
     makeTimeTable()
     var addButton = document.createElement('input')
     addButton.id = "addButton"
     addButton.type = 'button'
     addButton.value = "±"
     addButton.classList = ["button"]
-    addButton.onclick = () => {
-        var str = prompt("教科名(｢、｣区切りで複数入力)").split('、');
+    addButton.onclick = async function(){
+        var str = (await ask("教科名(｢、｣区切りで複数入力)")).split('、');
         for(var i of str){
             var obj = document.getElementsByName(i)[0]
             if(obj === undefined){
@@ -192,8 +196,8 @@ function right(){
     makeTimeTable()
 }
 
-function editWeek(){
-    week = prompt("週を編集(,区切り)",week.join(',')).split(',')
+async function editWeek(){
+    week = await ask("週を編集(,区切り)",week.join(',')).split(',')
     format()
     if(showSunday){
         maxDay=week.length*7
@@ -203,8 +207,8 @@ function editWeek(){
     makeTimeTable()
 }
 
-function editNum(){
-    var newNum = Math.floor(Number(prompt("1日の授業数")))
+async function editNum(){
+    var newNum = Math.floor(Number(await ask("1日の授業数")))
     format()
     if(isNaN(newNum)){
         newNum=maxNum
@@ -279,4 +283,45 @@ document.body.addEventListener("touchstart", function(e){
     if (e.touches && e.touches.length > 1) {
       e.preventDefault();
     }
-  }, {passive: false});
+  },
+{passive: false});
+
+async function noprompt(){
+  ask = async function(str){
+    askflg = false
+    var askpop = document.createElement("div")
+    var asktxt = document.createElement("span")
+    var askara = document.createElement("textarea")
+    var askbtn = document.createElement("span")
+    askpop.append(asktxt)
+    askpop.append(askara)
+    askpop.append(askbtn)
+    askpop.className = "askpop"
+    asktxt.className = "asktxt"
+    askara.className = "askara"
+    askbtn.className = "askbtn"
+    document.body.append(askpop);
+    asktxt.append(document.createTextNode(str));
+    askbtn.append(document.createTextNode("Ok"));
+    askbtn.onclick = function(){
+      askflg = true
+    }
+    await askWait()
+    var askans = askara.value
+    askpop.remove()
+    return askans
+  }
+}
+
+async function askWait(){
+  await (new Promise(function(resolve, reject){
+    setTimeout(function(){
+      if(askflg){
+        resolve()
+      }else{
+        reject()
+      }
+    }, 100);
+  })).then(function(){
+  }).catch(askWait)
+}
