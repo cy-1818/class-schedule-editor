@@ -302,7 +302,7 @@ async function noprompt(){
     askbtn.className = "askbtn"
     document.body.append(askpop);
     asktxt.append(document.createTextNode(str));
-    askbtn.append(document.createTextNode("Ok"));
+    askbtn.append(document.createTextNode("OK"));
     askbtn.onclick = function(){
       askflg = true
     }
