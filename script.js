@@ -13,6 +13,9 @@ var ask = async function(str){
   return prompt(str)
 }
 var askflg = false
+var formatType = 1
+var finalJSON
+var daynames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 function buttonAdd(value){
     let button = document.createElement('input')
@@ -133,16 +136,59 @@ function format(){
     }
 }
 
+function finalFormat(){
+  switch(formatType){
+    case 1:
+      format();
+      return classes;
+      break;
+    case 2:
+      finalJSON = {}
+      for(var n=0;n<week.length;n++){
+      console.log(finalJSON)
+        finalJSON[week[n]]={}
+        for(var k=0;k<7;k++){
+          if(!showSunday && k===0){
+            finalJSON[week[n]].Sun = []
+          }else{
+            var i;
+            if(!SundayLeft && k===0){
+              i = 6
+            }else if(SundayLeft && showSunday){
+              i = k
+            }else{
+              i = k-1
+            }
+            var dayJSON = []
+            if(showSunday){
+              i += n*7
+            }else{
+              i += n*6
+            }
+            for(var j=0;j<classes[0].length;j++){
+              dayJSON[j]=document.getElementById(`${i},${j}`).innerText
+              if(dayJSON[j]=='____'){
+                dayJSON[j]='　'
+              }
+            }
+            finalJSON[week[n]][daynames[k]] = dayJSON
+          }
+        }
+      }
+      return finalJSON;
+      break;
+  }
+}
+
 function getCopy() {
-    format()
-    console.log(classes)
-    navigator.clipboard.writeText(JSON.stringify(classes))
-    document.getElementById('getData').value = '時間割がコピーされました'
+    finalJSON = finalFormat()
+    console.log(finalJSON)
+    navigator.clipboard.writeText(JSON.stringify(finalJSON))
 }
 
 function getJSON(){
-    format();
-    var json = new Blob([JSON.stringify(classes)],{type:'appliation/json'})
+    finalJSON = finalFormat()
+    var json = new Blob([JSON.stringify(finalJSON, null, "\t")],{type:'appliation/json'})
     var dummy = document.createElement('a')
     dummy.href = window.URL.createObjectURL(json)
     dummy.download = "Schedule.json"
@@ -272,6 +318,16 @@ function transSun(){
     makeTimeTable()
 }
 
+function changeJSON(){
+  formatType++;
+  if(formatType == 3){
+    formatType = 1
+  }
+  document.getElementById('changeJSON').value="JSON形式:"+formatType
+}
+
+
+
 setUp()
 
 document.body.addEventListener("touchstart", function(e){
@@ -302,7 +358,7 @@ async function noprompt(){
     askbtn.className = "askbtn"
     document.body.append(askpop);
     asktxt.append(document.createTextNode(str));
-    askbtn.append(document.createTextNode("OK"));
+    askbtn.append(document.createTextNode("Ok"));
     askbtn.onclick = function(){
       askflg = true
     }
