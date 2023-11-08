@@ -145,7 +145,7 @@ function finalFormat(){
     case 2:
       finalJSON = {}
       for(var n=0;n<week.length;n++){
-      console.log(finalJSON)
+      // console.log(finalJSON)
         finalJSON[week[n]]={}
         for(var k=0;k<7;k++){
           if(!showSunday && k===0){
