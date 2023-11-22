@@ -22,10 +22,7 @@
         </ul>
     </div>
     <div>
-        <input type="button" class="weekButton" id="editWeek" onclick="editWeek()" value="週を編集"/>
         <input type="button" class="weekButton" id="editNum" onclick="editNum()" value="1日の授業数を変更"/>
-        <input type="button" class="weekButton" id="showSun" onclick="showSun()" value="日曜を非表示"/>
-        <input type="button" class="weekButton" id="transSun" onclick="transSun()" value="日月火…土"/>
         <input type="button" class="weekButton" id="changeJSON" onclick="changeJSON()" value="JSON形式:1"/>
     </div>
     <div class="indicator">
@@ -49,20 +46,7 @@
         <input type="button" class="getJSON" id='getJSON' onclick="getJSON()" value="JSON形式でダウンロード">
     </div>
     <div class="spacer"></div>
-    <span class="buttons">
-        <div class="subjects" id="choice"></div>
-        <div class="rightButtons" id="rightButtons">
-            <input type="button" class="del-button" onclick="del()" value="⌫"/>
-            <div style="display:inline-block;width:110px;height:100px;vertical-align: top;">
-                <input type="button" class="left-button" onclick="left()" value="←"/>
-                <p style="display:inline-block;width:50px;height:60px;vertical-align: top;">
-                    <input type="button" class="up-button" onclick="up()" value="↑"/>
-                    <input type="button" class="down-button" onclick="down()" value="↓"/>
-                </p>
-                <input type="button" class="right-button" onclick="right()" value="→"/>
-            </div>
-        </div>
-    </span>
+    <span class="buttons" id="buttons"></span>
     <script src="script.js"></script>
 </body>
 </html>
