@@ -117,7 +117,7 @@ function addDay(num, n){
       patternChooseTD.onclick=async function(){
         var setPattern = await ask("パターン名")
         if(patterns[setPattern]===undefined){
-          patterns[setPattern] = {}
+          patterns[setPattern] = structuredClone(patterns["*"])
         }
         classes[week[n]][daynames[num]]["pattern"] = setPattern
         makeTimeTable()
@@ -245,6 +245,19 @@ function makeTimeTable() {
       var patternNameTH = document.createElement('th')
       patternNameTH.colSpan = 3;
       patternNameTH.innerText = patternsKey[n]
+      patternNameTH.onclick = (function(str){
+        return (async function(){
+          var newName = await ask("パターン名")
+          setPatterns()
+          if(newName === ""){
+            delete patterns[str];
+          }else{
+            patterns[newName] = structuredClone(patterns[str])
+            delete patterns[str];
+          }
+          makeTimeTable();
+        })
+      })(patternsKey[n])
       secondTR.append(patternNameTH)
       makeTimeSetter(1, patternsKey[n])
     }
@@ -252,8 +265,10 @@ function makeTimeTable() {
     addPatternTH.innerText = "パターンを追加"
     addPatternTH.onclick=async function(){
       var newPattern = await ask("パターン名")
-      patterns[newPattern] = {}
-      makeTimeTable()
+      if(newPattern){
+        patterns[newPattern] = structuredClone(patterns["*"])
+        makeTimeTable()
+      }
     }
     addPatternTH.rowSpan = maxNum+2
     secondTR.append(addPatternTH)
@@ -431,7 +446,7 @@ function finalFormat(){
       return ansJSON;
       break;
     case 2:
-      return {"classes":classes, "patterns":patterns}
+      return {"week":week, "classes":classes, "patterns":patterns}
       break;
   }
 }
@@ -524,4 +539,11 @@ async function askWait(){
     }, 100);
   })).then(function(){
   }).catch(askWait)
+}
+
+function loadJSON(json){
+  var obj = JSON.parse(json)
+  week = obj.week
+  classes = obj.classes
+  patterns = obj.patterns
 }
