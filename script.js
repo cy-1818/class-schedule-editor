@@ -446,7 +446,12 @@ function finalFormat(){
       return ansJSON;
       break;
     case 2:
-      return {"week":week, "classes":classes, "patterns":patterns}
+      return {
+        "week":week,
+        "classes":classes,
+        "patterns":patterns,
+        "maxNum":maxNum
+      };
       break;
   }
 }
@@ -542,8 +547,11 @@ async function askWait(){
 }
 
 function loadJSON(json){
+  table.innerHTML=""
   var obj = JSON.parse(json)
   week = obj.week
   classes = obj.classes
   patterns = obj.patterns
+  maxNum = obj.maxNum
+  makeTimeTable()
 }
