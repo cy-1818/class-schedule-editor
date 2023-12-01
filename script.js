@@ -60,11 +60,14 @@ function setClasses(){
       }
       for(var j=0;j<maxNum;j++){
         if(classes[week[n]][daynames[k]][j]===undefined){
-          classes[week[n]][daynames[k]][j]='____'
+          classes[week[n]][daynames[k]][j]=null
         }
         var tn = document.getElementById(week[n]+"/"+n+"/"+daynames[k]+"/"+j)
         if(tn){
           classes[week[n]][daynames[k]][j]=tn.innerText;
+          if(classes[week[n]][daynames[k]][j]=="____"){
+            classes[week[n]][daynames[k]][j] = null
+          }
         }
       }
     }
@@ -86,7 +89,11 @@ function setPatterns(){
         var node=document.getElementById(patID)
         if(node){
           str=node.innerText
-          if(patternElements[j]!="name"){
+          if(patternElements[j]=="name"){
+            if(!str){
+              str = null
+            }
+          }else{
             str = timeToNum(str)
           }
           patterns[patternNames[n]][k][patternElements[j]] = str
@@ -131,8 +138,8 @@ function addDay(num, n){
       let td = document.createElement('td')
       let txt = document.createElement('p')
       let cellID = week[n] + "/"+n+"/" + daynames[num] + "/" + j
-      td.align="center"
-      td.width="5em"
+      td.style.align="center"
+      td.style.width="3em"
       txt.id = cellID
       txt.onclick = function(){
         setSbjButtons()
@@ -141,7 +148,7 @@ function addDay(num, n){
           makeTimeTable()
         }
       }
-      if(classes[week[n]][daynames[num]][j]=='　'){
+      if(!classes[week[n]][daynames[num]][j]){
         classes[week[n]][daynames[num]][j]='____'
       }
       txt.innerText = classes[week[n]][daynames[num]][j]
@@ -217,8 +224,8 @@ function makeTimeSetter(num, patternName){
       if(patternTextID==editID){
         timeSetterTD.bgColor = "lightskyblue"
       }
-      timeSetterTD.align="center"
-      timeSetterTxt.width="3em"
+      timeSetterTD.style.align="center"
+      timeSetterTxt.style.width="3em"
       timeSetterTxt.contentEditable = true
       timeSetterTD.appendChild(timeSetterTxt)
       trs[j].appendChild(timeSetterTD)
@@ -446,11 +453,14 @@ function finalFormat(){
       return ansJSON;
       break;
     case 2:
+      setClasses()
+      setPatterns()
       return {
         "week":week,
         "classes":classes,
         "patterns":patterns,
-        "maxNum":maxNum
+        "maxNum":maxNum,
+        "subjs":subjs
       };
       break;
   }
@@ -553,5 +563,6 @@ function loadJSON(json){
   classes = obj.classes
   patterns = obj.patterns
   maxNum = obj.maxNum
+  subjs = obj.subjs
   makeTimeTable()
 }
