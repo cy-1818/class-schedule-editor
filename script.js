@@ -565,4 +565,5 @@ function loadJSON(json){
   maxNum = obj.maxNum
   subjs = obj.subjs
   makeTimeTable()
+  setSbjButtons()
 }
