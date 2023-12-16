@@ -56,17 +56,20 @@ function setClasses(){
     }
     for(var k=0;k<daynames.length;k++){
       if(classes[week[n]][daynames[k]]===undefined){
-        classes[week[n]][daynames[k]]=[]
+        classes[week[n]][daynames[k]]={}
+      }
+      if(classes[week[n]][daynames[k]]["classes"]===undefined){
+        classes[week[n]][daynames[k]]["classes"]=[]
       }
       for(var j=0;j<maxNum;j++){
-        if(classes[week[n]][daynames[k]][j]===undefined){
-          classes[week[n]][daynames[k]][j]=null
+        if(classes[week[n]][daynames[k]]["classes"][j]===undefined){
+          classes[week[n]][daynames[k]]["classes"][j]=null
         }
         var tn = document.getElementById(week[n]+"/"+n+"/"+daynames[k]+"/"+j)
         if(tn){
-          classes[week[n]][daynames[k]][j]=tn.innerText;
-          if(classes[week[n]][daynames[k]][j]=="____"){
-            classes[week[n]][daynames[k]][j] = null
+          classes[week[n]][daynames[k]]["classes"][j]=tn.innerText;
+          if(classes[week[n]][daynames[k]]["classes"][j]=="____"){
+            classes[week[n]][daynames[k]]["classes"][j] = null
           }
         }
       }
@@ -148,10 +151,10 @@ function addDay(num, n){
           makeTimeTable()
         }
       }
-      if(!classes[week[n]][daynames[num]][j]){
-        classes[week[n]][daynames[num]][j]='____'
+      if(!classes[week[n]][daynames[num]]["classes"][j]){
+        classes[week[n]][daynames[num]]["classes"][j]='____'
       }
-      txt.innerText = classes[week[n]][daynames[num]][j]
+      txt.innerText = classes[week[n]][daynames[num]]["classes"][j]
       txt.contentEditable = true
       td.appendChild(txt)
       trs[j].appendChild(td)
@@ -446,7 +449,7 @@ function finalFormat(){
           for(var k=0;k<7;k++){
             ansJSON.push([])
             for(var j=0;j<maxNum;j++){
-              ansJSON[n*7+k].push(classes[nameList[n]][daynames[k]][j])
+              ansJSON[n*7+k].push(classes[nameList[n]][daynames[k]]["classes"][j])
             }
           }
         }
