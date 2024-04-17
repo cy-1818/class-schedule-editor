@@ -71,8 +71,12 @@ function setClasses(){
           if(classes[week[n]][daynames[k]]["classes"][j]=="____"){
             classes[week[n]][daynames[k]]["classes"][j] = null
           }
+          if(classes[week[n]][daynames[k]]["classes"][j]=="\n"){
+            classes[week[n]][daynames[k]]["classes"][j] = null
+          }
         }
       }
+      classes[week[n]][daynames[k]]["classes"].splice(maxNum)
     }
   }
 }
@@ -103,6 +107,7 @@ function setPatterns(){
         }
       }
     }
+    patterns[patternNames[n]].splice(maxNum)
   }
 }
 
